@@ -1,0 +1,29 @@
+syntax = "proto2";
+package ukex; 
+
+message historicaltransactiondata 
+{ 
+    enum CONST
+    {
+        CMD = 107;
+    }
+    required	string	type = 1; 
+    message Data
+    {
+        message TradeLog
+        {
+            required uint64 tradeid = 1;
+            required string addtime = 2;
+            required string timestamp = 3;
+            required uint64 type =4;
+            required string price =5;
+            required string mum = 6;
+            required string num = 7;
+            required uint64 buyOrderID= 8;
+            required uint64 sellOrderID= 9;
+        }
+        repeated	TradeLog	tradelog = 1;
+    }
+    required	Data	data = 2;
+    required    string	token = 3; 
+}

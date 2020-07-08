@@ -1,0 +1,8 @@
+{
+  "ip_for_client": "192.168.1.31",
+  "port_for_client": 9000,
+  "ip_for_backtrade": "192.168.1.31",
+  "port_for_backtrade": 9001,
+  "connect_key": "123456",
+  "serverID":6
+}

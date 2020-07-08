@@ -1,0 +1,26 @@
+#! /bin/bash
+
+OPENLIB_LIB_ZIP="spdlog-1.4.2.zip"
+OPENLIB_LIB_DIR="spdlog-1.4.2"
+OPENLIB_LIB_NAME="spdlog"
+
+echo "-----------------------------"
+echo "Build "$OPENLIB_LIB_NAME" ..."
+
+
+if [ -d $OPENLIB_DEST_DIR$OPENLIB_LIB_DIR  ];then
+  echo $OPENLIB_LIB_NAME" Already exist"
+  exit
+fi
+
+
+cd $OPENLIB_DEST_DIR
+unzip -q $OPENLIB_SRC_DIR/$OPENLIB_LIB_ZIP
+
+cd $OPENLIB_LIB_DIR
+cmake .
+make
+cd ../
+
+ln -s $OPENLIB_LIB_DIR $OPENLIB_LIB_NAME
+

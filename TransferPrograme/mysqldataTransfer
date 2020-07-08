@@ -1,0 +1,8 @@
+# -h 目标数据库ip -P目标数据库端口 -u目标数据库账户名 -p账户名对应密码 --databases 导出的标数据库名>生成目标文件.sql
+mysqldump -h 192.168.1.157 -P3306 -uzhang -p123456 --databases ukex_data > ukex_data.sql
+# -u 接收放数据库登录用户 -p端口号 <导入的.sql脚本
+mysql -u wuyoupeng -p123456 < ukex_data.sql
+# 导入完成删除数据库sql
+rm ukex_data.sql
+# 开始进行转换程
+python ./TransferPrograme.py

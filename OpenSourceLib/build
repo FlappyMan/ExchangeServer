@@ -1,0 +1,43 @@
+#!/bin/bash
+# this build script must be running as root
+
+# Make sure you have called scripts below before calling this script
+# apt-get update
+# apt-get install autoconf automake libtool
+# apt-get install g++
+# apt-get install libmysqlclient-dev
+# wget https://github.com/Kitware/CMake/releases/download/v3.16.4/cmake-3.16.4.tar.gz
+# tar zxvf cmake-3.16.4.tar.gz;cd cmake-3.16.4; ./configure; make ;make install;
+
+
+UKEX_SERVER_ROOT="/usr/local/UkexServer"
+OPENLIB_DEST_DIR=$UKEX_SERVER_ROOT"/lib/"
+OPENLIB_SRC_DIR=$(pwd)
+
+export OPENLIB_DEST_DIR
+export OPENLIB_SRC_DIR
+
+mkdir $OPENLIB_DEST_DIR
+
+if [ ! -d $OPENLIB_DEST_DIR  ];then
+  echo "-----------------------------"
+  echo "Create [" $OPENLIB_DEST_DIR "] Failed."
+  echo "Run: mkdir " $UKEX_SERVER_ROOT "; chmod 777 " $UKEX_SERVER_ROOT
+  echo "-----------------------------"
+  exit
+fi
+
+#rm -rf $OPENLIB_DEST_DIR
+#mkdir $OPENLIB_DEST_DIR
+
+./build_jsoncpp
+./build_openssl
+./build_protobuf
+./build_spdlog
+./build_libuv
+./build_http_parser
+
+cd $OPENLIB_DEST_DIR
+ln -s /usr/include/mysql mysqlinc
+ln -s /usr/lib/mysql mysqllib
+

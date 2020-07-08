@@ -1,0 +1,32 @@
+syntax = "proto2";
+package ukex; 
+
+message depthdata 
+{ 
+    enum CONST
+    {
+        CMD = 106;
+    }
+    required    string    type = 1; 
+    message Data
+    {
+        message Depth
+        {
+            message buyAction
+            {
+                required    string  b0 = 1;
+                required    string  b1 = 2;
+            }
+            message sellAction
+            {
+                required    string  s0 = 1;
+                required    string  s1 = 2;
+            }
+            repeated buyAction  buy = 1;
+            repeated sellAction sell = 2;
+        }
+        required	Depth	depth = 1;
+    }
+    required	Data	data = 2;
+    required    string	token = 3; 
+}

@@ -1,0 +1,36 @@
+syntax = "proto2";
+package ukex; 
+message allmarketinfo 
+{ 
+    enum CONST
+    {
+        CMD = 104;
+    }
+    required    string	type = 1; 
+    message Data
+    {
+        required    string  m0 = 1;
+        required    string  m1 = 2;
+        required    string  m2 = 3;
+        required    string  m3 = 4;
+        required    string  m4 = 5;
+        required    string  m5 = 6;
+        required    string  m6 = 7;
+        required    string  m7 = 8;
+        required    string  m8 = 9;
+        required    string  m9 = 10;
+        required    string  m10 = 11;
+        required    string  m11 = 12;
+        required    string  m12 = 13;
+        required    string  m13 = 14;
+    }
+    repeated    Data	data = 2;
+    required    uint64	marketid = 3;
+    message Exchange
+    {
+        required    string  btc = 1;
+        required    string  eth = 2;
+    }
+    required    Exchange exchange = 4;
+    required    string	token = 5; 
+}

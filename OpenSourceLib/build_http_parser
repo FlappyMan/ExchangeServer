@@ -1,0 +1,25 @@
+#! /bin/bash
+
+
+OPENLIB_LIB_ZIP="http-parser-2.9.2.zip"
+OPENLIB_LIB_DIR="http-parser-2.9.2"
+OPENLIB_LIB_NAME="http-parser"
+
+echo "-----------------------------"
+echo "Build "$OPENLIB_LIB_NAME" ..."
+
+
+if [ -d $OPENLIB_DEST_DIR$OPENLIB_LIB_DIR  ];then
+  echo $OPENLIB_LIB_NAME" Already exist"
+  exit
+fi
+
+
+
+cd $OPENLIB_DEST_DIR
+unzip -q $OPENLIB_SRC_DIR/$OPENLIB_LIB_ZIP
+ln -s $OPENLIB_LIB_DIR $OPENLIB_LIB_NAME
+
+cd $OPENLIB_LIB_NAME
+make
+

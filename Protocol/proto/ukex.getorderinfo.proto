@@ -1,0 +1,14 @@
+syntax = "proto2";
+package ukex; 
+
+message getorderinfo
+{
+    enum CONST
+    {
+        CMD = 118;
+    }
+    optional    uint64  uid = 1;
+    optional    uint64  marketid = 2;
+    optional    uint64  orderid = 3;
+    required    string	token = 4; 
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+package ukex; 
+message response
+{ 
+    enum CONST
+    {
+        CMD = 111;
+    }
+    required    int32   status = 1;
+    required    string  data = 2;
+    required    string	token = 3; 
+}

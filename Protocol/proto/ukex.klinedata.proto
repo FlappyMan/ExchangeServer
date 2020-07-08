@@ -1,0 +1,21 @@
+syntax = "proto2";
+package ukex; 
+message klinedata 
+{ 
+    enum CONST
+    {
+        CMD = 105;
+    }
+    required    string	type = 1; 
+    message Data
+    {
+        required	string	k0 = 1;
+        required	string	k1 = 2;
+        required	string	k2 = 3;
+        required	string	k3 = 4;
+        required	string	k4 = 5;
+        required	string	k5 = 6;
+    }
+    repeated	Data	data = 2;
+    required    string	token = 3; 
+}

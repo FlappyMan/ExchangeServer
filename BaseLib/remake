@@ -1,0 +1,4 @@
+rm CMakeCache.txt
+make clean
+cmake .
+make 

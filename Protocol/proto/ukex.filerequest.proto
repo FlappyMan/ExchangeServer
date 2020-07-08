@@ -1,0 +1,19 @@
+syntax = "proto2";
+package ukex; 
+
+message filerequest
+{
+    enum CONST
+    {
+        CMD = 112;
+    }
+    required    string  name = 1;
+    required    string  path = 2;
+    required    uint64  size = 3;
+    required    uint64  modifytime = 4;
+    required    uint64  offset = 5;
+    required    uint32  length = 6;
+    required    string	token = 7; 
+    required    uint32  type = 8;//1、上传；2、下载
+    required    uint32  cancel = 9;//1、取消上传；2、取消下载  
+}

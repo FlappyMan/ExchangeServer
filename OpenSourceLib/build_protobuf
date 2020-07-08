@@ -1,0 +1,30 @@
+#! /bin/bash
+
+OPENLIB_LIB_ZIP="protobuf-3.10.0.zip"
+OPENLIB_LIB_DIR="protobuf-3.10.0"
+OPENLIB_LIB_NAME="protobuf"
+
+echo "-----------------------------"
+echo "Build "$OPENLIB_LIB_NAME" ..."
+
+
+if [ -d $OPENLIB_DEST_DIR$OPENLIB_LIB_DIR  ];then
+  echo $OPENLIB_LIB_NAME" Already exist"
+  exit
+fi
+
+
+cd $OPENLIB_DEST_DIR
+unzip -q $OPENLIB_SRC_DIR/$OPENLIB_LIB_ZIP
+
+cd $OPENLIB_LIB_DIR
+./autogen.sh
+./configure
+make
+make check
+make install
+ldconfig
+cd ../
+
+ln -s $OPENLIB_LIB_DIR $OPENLIB_LIB_NAME
+

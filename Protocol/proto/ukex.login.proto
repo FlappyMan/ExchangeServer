@@ -1,0 +1,12 @@
+syntax = "proto2";
+package ukex; 
+
+message login
+{
+    enum CONST
+    {
+        CMD = 114;
+    }
+    required    string  key = 1; 
+    required    bytes  hash = 2;
+}

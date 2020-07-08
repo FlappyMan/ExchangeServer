@@ -1,0 +1,18 @@
+syntax = "proto2";
+package ukex; 
+message uptrade 
+{ 
+    enum CONST
+    {
+        CMD = 100;
+    }
+    required    uint64  uid = 1; 
+    required    string	token = 2; 
+    required    string	paypassword = 3; 
+    required    uint64	marketid = 4;
+    required    string	price = 5;  
+    required    string	num = 6;  
+    required    uint32	type = 7;  
+    required    uint64  orderid = 8;
+    required    uint64  uptradeid = 9;
+}

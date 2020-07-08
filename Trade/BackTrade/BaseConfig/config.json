@@ -1,0 +1,43 @@
+{
+  "accept_http_ip": "127.0.0.1",
+  "accept_http_port": 9503,
+  "usercenter_ip": "127.0.0.1",
+  "usercenter_port": 9002,
+  "connect_server": [
+    {
+      "ip": "127.0.0.1",
+      "port": 8888,
+      "key": "123456"
+    }
+  ],
+  "connect_market": [
+    {
+      "ip": "127.0.0.1",
+      "port": 9003,
+      "key": "123456"
+    }
+  ],
+  "host": "192.168.1.157",
+  "port": 3306,
+  "user": "zhang",
+  "password": "123456",
+  "account": "account",
+  "admin": "admin",
+  "assets": "assets",
+  "assetslog":"assetslog",
+  "base": "base",
+  "exassets": "exassets",
+  "kyc": "kyc",
+  "otc": "otc",
+  "other": "other",
+  "sa": "sa",
+  "trade": "trade_138_2020",
+  "market": "btc_usdt",
+  "marketID": 138,
+  "coinA_ID":"83",
+  "coinB_ID":"91",
+  "currency_name":"usdt",
+  "web_icon":"",
+  "app_icon":"",
+  "currency":""
+}

@@ -1,0 +1,5 @@
+/home/gong/ukexserver/Test/CMakeFiles/rebuild_cache.dir
+/home/gong/ukexserver/Test/CMakeFiles/edit_cache.dir
+/home/gong/ukexserver/Test/CMakeFiles/grant.dir
+/home/gong/ukexserver/Test/CMakeFiles/mysqltest.dir
+/home/gong/ukexserver/Test/CMakeFiles/http.dir

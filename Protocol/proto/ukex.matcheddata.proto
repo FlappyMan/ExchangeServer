@@ -1,0 +1,26 @@
+syntax = "proto2";
+package ukex; 
+message matcheddata 
+{ 
+    enum CONST
+    {
+        CMD = 108;
+    }
+    required    string  price = 1;
+    required    string  number = 2;
+    message BuyUser
+    {
+        required    uint64  userid = 1;
+        required    uint64  orderid = 2;
+        required    string  buyPrice = 3;
+    } 
+    required	BuyUser	buyuser = 3;
+    message SellUser
+    {
+        required    uint64  userid = 1;
+        required    uint64  orderid = 2;
+        required    string  sellPrice = 3;
+    }
+    required	SellUser  selluser = 4;
+    required    string	token = 5; 
+}

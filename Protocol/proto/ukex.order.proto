@@ -1,0 +1,24 @@
+syntax = "proto2";
+package ukex; 
+message order
+{ 
+    enum CONST
+    {
+        CMD = 115;
+    }
+    required    string  orders = 1; 
+    message Data
+    {
+        required    uint64  orderNumber = 1;
+        required    string  type = 2;
+        required    string  amount = 3;
+        required    string  total = 4;
+        required    string  initialRate = 5;
+        required    string  initialAmount = 6;
+        required    string  filledAmount = 7;
+        required    string  currencyPair = 8;
+        required    uint64  timestamp = 9;
+        required    string  status = 10;
+    }
+    required    Data  data = 2;
+}

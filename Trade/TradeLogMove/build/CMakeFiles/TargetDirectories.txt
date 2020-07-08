@@ -1,0 +1,3 @@
+/home/gong/ukexserver/Trade/TradeLogMove/build/CMakeFiles/rebuild_cache.dir
+/home/gong/ukexserver/Trade/TradeLogMove/build/CMakeFiles/TradeLogMoveServer.dir
+/home/gong/ukexserver/Trade/TradeLogMove/build/CMakeFiles/edit_cache.dir

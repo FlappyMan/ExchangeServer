@@ -1,0 +1,21 @@
+syntax = "proto2";
+package ukex; 
+message canceltradebatch
+{ 
+    enum CONST
+    {
+        CMD = 103;
+    }
+    required    uint64  uid = 1; 
+    required    string	token = 2;
+    message Orders
+    {
+        required    uint64	orderid = 1;
+        required    uint64	marketid = 2;
+        required    uint32  type = 3;//1、买入；2、卖出
+        optional    string  price = 4;
+        optional    string  number = 5;
+    }
+    repeated    Orders  orders = 3;
+    required    uint64  canceltradebatchid = 4;
+}

@@ -1,0 +1,597 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>UKEX撮合程序API文档</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#历史记录">历史记录</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n99"><a class="md-toc-inner" href="#api说明">API说明</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n117"><a class="md-toc-inner" href="#header说明">header说明</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n123"><a class="md-toc-inner" href="#user-agent">User-Agent</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n128"><a class="md-toc-inner" href="#json格式说明">json格式说明</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n130"><a class="md-toc-inner" href="#状态码code">状态码Code</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n137"><a class="md-toc-inner" href="#返回值格式">返回值格式</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n144"><a class="md-toc-inner" href="#其它约定">其它约定</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n148"><a class="md-toc-inner" href="#接口及数据报文">接口及数据报文</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n149"><a class="md-toc-inner" href="#http-客户端api请求">http 客户端API请求</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n150"><a class="md-toc-inner" href="#提交交易">提交交易</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n215"><a class="md-toc-inner" href="#批量提交交易">批量提交交易</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n292"><a class="md-toc-inner" href="#撤销订单">撤销订单</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n343"><a class="md-toc-inner" href="#批量撤销订单">批量撤销订单</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n405"><a class="md-toc-inner" href="#查询交易中的订单">查询交易中的订单</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n544"><a class="md-toc-inner" href="#fronttrade服务端tcp数据报文">FrontTrade服务端TCP数据报文</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n545"><a class="md-toc-inner" href="#fronttrade-服务器转发数据包">FrontTrade-服务器转发数据包</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n616"><a class="md-toc-inner" href="#backtrade服务端tcp数据报文">BackTrade服务端TCP数据报文</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n617"><a class="md-toc-inner" href="#backtrade-交易市场总信息">BackTrade-交易市场总信息</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n739"><a class="md-toc-inner" href="#backtrade-k线数据">BackTrade-K线数据</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n799"><a class="md-toc-inner" href="#backtrade-深度数据">BackTrade-深度数据</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n869"><a class="md-toc-inner" href="#backtrade-历史交易数据">BackTrade-历史交易数据</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n957"><a class="md-toc-inner" href="#backtrade-撮合成功">BackTrade-撮合成功</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1014"><a class="md-toc-inner" href="#frontmarket服务端tcp数据报文">FrontMarket服务端TCP数据报文</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1015"><a class="md-toc-inner" href="#frontmarket-服务器请求k线历史记录">FrontMarket-服务器请求K线历史记录</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1091"><a class="md-toc-inner" href="#frontmarket服务端websocket返回客户端数据报文">FrontMarket服务端websocket返回客户端数据报文</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1092"><a class="md-toc-inner" href="#参考-服务器请求k线历史记录frontmarketkline">参考 服务器请求K线历史记录</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1093"><a class="md-toc-inner" href="#参考-推送-交易市场总信息预览backtradepushmarketinfo">参考 推送-交易市场总信息预览</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1094"><a class="md-toc-inner" href="#参考-推送-k线数据预览backtradekline">参考 推送-K线数据预览</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1095"><a class="md-toc-inner" href="#参考-推送-深度数据预览backtradedeep">参考 推送-深度数据预览</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1096"><a class="md-toc-inner" href="#参考-推送-历史交易数据backtradehistorydealinfo">参考 推送-历史交易数据</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1097"><a class="md-toc-inner" href="#frontmarket-通知用户撮合成功">FrontMarket-通知用户撮合成功</a></span></p></div><h1><a name="历史记录" class="md-header-anchor"></a><span>历史记录</span></h1><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>内容</span></th></tr></thead><tbody><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><span>文档创建</span></td></tr></tbody></table></figure><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>新增或修改的接口API</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#Trade_upTrade'><span>Mapi/Trade/upTrade</span></a></td><td><span>新增接口：提交交易</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#Trade_cancelTrade'><span>Mapi/Trade/cancelTrade</span></a></td><td><span>新增接口：撤销订单</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#Trade_upTrade_batch'><span>Mapi/Trade/upTradeBatch</span></a></td><td><span>新增接口：批量提交交易</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#Trade_cancelTradeBatch'><span>Mapi/Trade/cancelTradeBatch</span></a></td><td><span>新增接口：批量撤销订单</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#Trade_getOrderInfo'><span>Mapi/Trade/getOrderInfo</span></a></td><td><span>新增接口：查询订单信息</span></td></tr></tbody></table></figure><p>&nbsp;</p><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>FrontTrade新增或修改的自定义数据包</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#FrontTrade_trans'><span>FrontTrade服务器转发数据包</span></a></td><td><span>新增报文:转发客户端请求</span></td></tr></tbody></table></figure><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>FrontMarket新增或修改的自定义数据包</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#FrontMarket_Kline'><span>FrontMarket服务器请求K线历史记录</span></a></td><td><span>新增报文:Frontmarket请求K线历史记录</span></td></tr></tbody></table></figure><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>BackTrade新增或修改的自定义数据包</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#BackTrade_pushMarketInfo'><span>推送-交易市场总信息预览</span></a></td><td><span>新增报文:推送交易市场总信息</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#BackTrade_Kline'><span>推送-K线数据预览</span></a></td><td><span>新增报文:推送K线数据</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#BackTrade_Deep'><span>推送-深度数据预览</span></a></td><td><span>新增报文:推送深度数据</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#BackTrade_historyDealInfo'><span>推送-历史交易数据</span></a></td><td><span>新增报文:历史交易数据</span></td></tr><tr><td><span>2019-10-17</span></td><td><span>吴友鹏</span></td><td><a href='#BackTrade_matchup_success'><span>推送-撮合成功</span></a></td><td><span>新增报文:撮合成功</span></td></tr></tbody></table></figure><h1><a name="api说明" class="md-header-anchor"></a><span>API说明</span></h1><ul><li><span>手机端与FrontTrade服务端采用Http通信</span></li><li><span>FrontTrade与BackTrade服务器之间采用TCP长连接自定义协议通信</span></li><li><span>BackTrade与FrontMarket服务器之间采用TCP长连接自定义协议通信</span></li><li><span>FrontMarket与客户端之间采用websocket长连接通信</span></li><li><span>http header将附上一些特定的值</span></li><li><span>请求与返回数据格式均为JSON字符串</span></li><li><span>接口相对路径：/api/{0}/{1}，其中0和1为不同接口动态变化的值</span></li><li><span>带删除线的接口为废弃接口，但仍在使用。不再使用的接口会直接从文档删除</span></li></ul><h2><a name="header说明" class="md-header-anchor"></a><span>header说明</span></h2><ul><li><span>必填项为token</span></li><li><span>其余参数可参照之前设计不变动</span></li></ul><h3><a name="user-agent" class="md-header-anchor"></a><span>User-Agent</span></h3><ul><li><span>无</span></li></ul><h2><a name="json格式说明" class="md-header-anchor"></a><span>json格式说明</span></h2><p><span>服务端返回的json将包含固定的status和数据字段data。</span></p><h3><a name="状态码code" class="md-header-anchor"></a><span>状态码Code</span></h3><p><span>状态码将分不同的号段供不同的接口使用，以达到根据编号即可查出是哪个接口的哪个错误。</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><h3><a name="返回值格式" class="md-header-anchor"></a><span>返回值格式</span></h3><p><span>格式一：返回单个值</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{"status": 1, "data":31276}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><span>格式二：返回对象</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{"status": 1,"data":{"Name":"兑换商品1", "Desc":"兑换商品描述"}}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><span>格式三：返回列表</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{"status": 1,"data":[</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {"Name":"兑换商品1", "Desc":"兑换商品描述"},</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {"Name":"兑换商品1", "Desc":"兑换商品描述"}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">]}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 92px;"></div><div class="CodeMirror-gutters" style="display: none; height: 92px;"></div></div></div></pre><h3><a name="其它约定" class="md-header-anchor"></a><span>其它约定</span></h3><ul><li><span>暂无</span></li></ul><h1><a name="接口及数据报文" class="md-header-anchor"></a><span>接口及数据报文</span></h1><h2><a name="http-客户端api请求" class="md-header-anchor"></a><span>http 客户端API请求</span></h2><h3><a name="提交交易" class="md-header-anchor"></a><span>提交交易</span></h3><blockquote><p><a id="Trade_upTrade"><span>Trade/upTrade</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>客户端带参请求，购买币或卖出币</span></p><p><span>请求方式：POST</span></p><p><span>请求数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>paypassword</span></td><td><span>string</span></td><td><span>是</span></td><td><span>支付密码</span></td></tr><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr><tr><td><span>price</span></td><td><span>int</span></td><td><span>是</span></td><td><span>价格</span></td></tr><tr><td><span>num</span></td><td><span>int</span></td><td><span>是</span></td><td><span>数量</span></td></tr><tr><td><span>type</span></td><td><span>int</span></td><td><span>是</span></td><td><span>交易类型，1 买入,2 卖出</span></td></tr></tbody></table></figure><p><span>响应status:</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><p><span>响应数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>status</span></td><td><span>int</span></td><td><span>是</span></td><td><span>0-失败，1-成功</span></td></tr><tr><td><span>data</span></td><td><span>string</span></td><td><span>是</span></td><td><span>&quot;交易成功&quot;或&quot;交易失败&quot;</span></td></tr></tbody></table></figure><h3><a name="批量提交交易" class="md-header-anchor"></a><span>批量提交交易</span></h3><blockquote><p><a id="Trade_upTrade_batch"><span>Trade/upTradeBatch</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>客户端带参请求，购买币或卖出币</span></p><p><span>请求方式：POST</span></p><p><span>请求数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>paypassword</span></td><td><span>string</span></td><td><span>是</span></td><td><span>支付密码</span></td></tr><tr><td><span>trades</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>订单列表信息</span></td></tr></tbody></table></figure><p><span>T -&gt; trades:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr><tr><td><span>price</span></td><td><span>int</span></td><td><span>是</span></td><td><span>价格</span></td></tr><tr><td><span>num</span></td><td><span>int</span></td><td><span>是</span></td><td><span>数量</span></td></tr><tr><td><span>type</span></td><td><span>int</span></td><td><span>是</span></td><td><span>交易类型，1 买入,2 卖出</span></td></tr></tbody></table></figure><p><span>响应status:</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><p><span>响应数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>status</span></td><td><span>int</span></td><td><span>是</span></td><td><span>0-失败，1-成功</span></td></tr><tr><td><span>data</span></td><td><span>string</span></td><td><span>是</span></td><td><span>&quot;交易成功&quot;或&quot;交易失败&quot;</span></td></tr></tbody></table></figure><h3><a name="撤销订单" class="md-header-anchor"></a><span>撤销订单</span></h3><blockquote><p><a id="Trade_cancelTrade"><span>Trade/cancelTrade</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>客户端带参请求，撤销订单</span></p><p><span>请求方式：POST</span></p><p><span>请求数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr><tr><td><span>id</span></td><td><span>int</span></td><td><span>是</span></td><td><span>订单 id</span></td></tr></tbody></table></figure><p><span>响应status:</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><p><span>响应数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>status</span></td><td><span>int</span></td><td><span>是</span></td><td><span>0-失败，1-成功</span></td></tr><tr><td><span>data</span></td><td><span>string</span></td><td><span>是</span></td><td><span>&quot;交易成功&quot;或&quot;交易失败&quot;</span></td></tr></tbody></table></figure><h3><a name="批量撤销订单" class="md-header-anchor"></a><span>批量撤销订单</span></h3><blockquote><p><a id="Trade_cancelTradeBatch"><span>Trade/cancelTradeBatch</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>客户端带参请求，撤销订单</span></p><p><span>请求方式：POST</span></p><p><span>请求数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>orders</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>订单列表信息</span></td></tr></tbody></table></figure><p><span>T -&gt; orders:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr><tr><td><span>id</span></td><td><span>int</span></td><td><span>是</span></td><td><span>订单id</span></td></tr></tbody></table></figure><p><span>响应status:</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><p><span>响应数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>status</span></td><td><span>int</span></td><td><span>是</span></td><td><span>0-失败，1-成功</span></td></tr><tr><td><span>data</span></td><td><span>string</span></td><td><span>是</span></td><td><span>&quot;交易成功&quot;或&quot;交易失败&quot;</span></td></tr></tbody></table></figure><h3><a name="查询交易中的订单" class="md-header-anchor"></a><span>查询交易中的订单</span></h3><blockquote><p><a id="Trade_getOrderInfo"><span>Trade/getOrderInfo</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>客户端带参请求，撤销订单</span></p><p><span>请求方式：POST</span></p><p><span>请求数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>int</span></td><td><span>否</span></td><td><span>用户id</span></td></tr><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>否</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr><tr><td><span>orderid</span></td><td><span>int</span></td><td><span>否</span></td><td><span>订单id</span></td></tr></tbody></table></figure><p><span>请求说明：根据订单号查询</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>orderid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>订单id</span></td></tr></tbody></table></figure><p><span>请求说明：根据市场查询</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr></tbody></table></figure><p><span>响应status:</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><p><span>响应数据：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>status</span></td><td><span>int</span></td><td><span>是</span></td><td><span>0-失败，1-成功</span></td></tr><tr><td><span>data</span></td><td><span>T</span></td><td><span>是</span></td><td><span>data1(status == 1) 或 data2(status == 0)</span></td></tr></tbody></table></figure><p><span>T -&gt; data1:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>orderNumber</span></td><td><span>int</span></td><td><span>是</span></td><td><span>订单id</span></td></tr><tr><td><span>initialRate</span></td><td><span>string</span></td><td><span>是</span></td><td><span>下单价格</span></td></tr><tr><td><span>initialAmount</span></td><td><span>string</span></td><td><span>是</span></td><td><span>下单量</span></td></tr><tr><td><span>amount</span></td><td><span>string</span></td><td><span>是</span></td><td><span>未成交数量</span></td></tr><tr><td><span>type</span></td><td><span>string</span></td><td><span>是</span></td><td><span>买卖类型 sell卖出, buy买入</span></td></tr><tr><td><span>lastDealTime</span></td><td><span>int</span></td><td><span>是</span></td><td><span>成交时间</span></td></tr><tr><td><span>status</span></td><td><span>string</span></td><td><span>是</span></td><td><span>cancelled已取消 done已完成</span></td></tr><tr><td><span>currencyPair</span></td><td><span>string</span></td><td><span>是</span></td><td><span>交易对(示例:ltc_btc)</span></td></tr></tbody></table></figure><p><span>T -&gt; data2:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>orderid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>订单id</span></td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="fronttrade服务端tcp数据报文" class="md-header-anchor"></a><span>FrontTrade服务端TCP数据报文</span></h2><h3><a name="fronttrade-服务器转发数据包" class="md-header-anchor"></a><span>FrontTrade-服务器转发数据包</span></h3><blockquote><p><a id="FrontTrade_trans"><span>FrontTrade-服务器转发数据包</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：[{&quot;token&quot;:&quot;asdfasdfsadf&quot;,&quot;paypassword&quot;:&quot;123&quot;,&quot;marketid&quot;:&quot;111&quot;,&quot;price&quot;:100,&quot;num&quot;:10,&quot;type&quot;:1,&quot;main_coin&quot;:&quot;btc&quot;}]</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>uid</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>token</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户token，对应用户的userId唯一标识</span></td></tr><tr><td><span>paypassword</span></td><td><span>string</span></td><td><span>是</span></td><td><span>交易密码</span></td></tr><tr><td><span>marketid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>币种 id，通过之前的接口getCoinList 获取</span></td></tr><tr><td><span>price</span></td><td><span>int</span></td><td><span>是</span></td><td><span>价格</span></td></tr><tr><td><span>num</span></td><td><span>int</span></td><td><span>是</span></td><td><span>数量</span></td></tr><tr><td><span>type</span></td><td><span>int</span></td><td><span>是</span></td><td><span>交易类型，1 买入,2 卖出</span></td></tr></tbody></table></figure><p><span>响应status:</span></p><ul><li><span>0 ：status 失败</span></li><li><span>1 ：status 正常</span></li></ul><p><span>响应报文json格式：{&quot;status&quot;:1,&quot;data&quot;:&quot;交易成功&quot;}</span></p><p><span>响应参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>status</span></td><td><span>int</span></td><td><span>是</span></td><td><span>0-失败，1-成功</span></td></tr><tr><td><span>data</span></td><td><span>string</span></td><td><span>是</span></td><td><span>&quot;交易成功&quot;或&quot;交易失败&quot;</span></td></tr></tbody></table></figure><h2><a name="backtrade服务端tcp数据报文" class="md-header-anchor"></a><span>BackTrade服务端TCP数据报文</span></h2><h3><a name="backtrade-交易市场总信息" class="md-header-anchor"></a><span>BackTrade-交易市场总信息</span></h3><blockquote><p><a id="BackTrade_pushMarketInfo"><span>BackTrade-交易市场总信息</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：{&quot;type&quot;:&quot;markets&quot;,&quot;data&quot;:[{&quot;0&quot;:&quot;btc/usdt&quot;,&quot;1&quot;:&quot;8400.23&quot;,&quot;2&quot;:&quot;8400.23&quot;,&quot;3&quot;:&quot;8400.23&quot;,&quot;4&quot;:&quot;452&quot;,&quot;5&quot;:&quot;8400.23&quot;,&quot;6&quot;:&quot;4524&quot;,&quot;7&quot;:&quot;0.64&quot;,&quot;8&quot;:&quot;btc_usdt&quot;,&quot;9&quot;:&quot;/upload/xxx&quot;,&quot;10&quot;:&quot;8400.23&quot;,&quot;11&quot;:&quot;btcoin&quot;,&quot;12&quot;:&quot;/upload/xxx&quot;,&quot;13&quot;:&quot;&quot;}],&quot;exchange&quot;:{&quot;btc&quot;:&quot;8400.23&quot;,&quot;eth&quot;:&quot;123.2&quot;}}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>type</span></td><td><span>string</span></td><td><span>是</span></td><td><span>markets市场标志</span></td></tr><tr><td><span>data</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>市场信息内容</span></td></tr><tr><td><span>exchange</span></td><td><span>T</span></td><td><span>是</span></td><td><span>价格变动信息</span></td></tr></tbody></table></figure><p><span>T -&gt; data:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>&quot;0&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>市场交易名称</span></td></tr><tr><td><span>&quot;1&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>最新价格</span></td></tr><tr><td><span>&quot;2&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>买入价格</span></td></tr><tr><td><span>&quot;3&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>卖出价格</span></td></tr><tr><td><span>&quot;4&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>24小时交易额</span></td></tr><tr><td><span>&quot;5&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>最低价</span></td></tr><tr><td><span>&quot;6&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>24小时交易量</span></td></tr><tr><td><span>&quot;7&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>24小时变化率</span></td></tr><tr><td><span>&quot;8&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>市场交易名称</span></td></tr><tr><td><span>&quot;9&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>购买币显示图标（web端使用）</span></td></tr><tr><td><span>&quot;10&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>购买币最高价格</span></td></tr><tr><td><span>&quot;11&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>购买币名称</span></td></tr><tr><td><span>&quot;12&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>购买币显示图标（移动端使用）</span></td></tr><tr><td><span>&quot;13&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>如果是法币交易市场则为：currency 否则为空字符串</span></td></tr></tbody></table></figure><p><span>T -&gt; exchange:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>&quot;btc&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>btc价格</span></td></tr><tr><td><span>&quot;eth&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>eth价格</span></td></tr></tbody></table></figure><p><span>响应报文：无</span></p><h3><a name="backtrade-k线数据" class="md-header-anchor"></a><span>BackTrade-K线数据</span></h3><blockquote><p><a id="BackTrade_Kline"><span>BackTrade-K线数据</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：{&quot;type&quot;:&quot;kline.5m&quot;,&quot;data&quot;:[{&quot;0&quot;:154221241,&quot;1&quot;:&quot;142&quot;,&quot;2&quot;:&quot;8400.23&quot;,&quot;3&quot;:&quot;8400.23&quot;,&quot;4&quot;:&quot;8400.23&quot;,&quot;5&quot;:&quot;8400.23&quot;}]}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>type</span></td><td><span>string</span></td><td><span>是</span></td><td><span>kline.5m-K线标志</span></td></tr><tr><td><span>data</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>市场信息内容</span></td></tr></tbody></table></figure><p><span>T -&gt; data:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>&quot;0&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>k线起始时间</span></td></tr><tr><td><span>&quot;1&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>时间段内交易总量</span></td></tr><tr><td><span>&quot;2&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>k线开始价格</span></td></tr><tr><td><span>&quot;3&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>k线高点价格</span></td></tr><tr><td><span>&quot;4&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>k线低点价格</span></td></tr><tr><td><span>&quot;5&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>k线收盘价格</span></td></tr></tbody></table></figure><p><span>响应报文：无</span></p><h3><a name="backtrade-深度数据" class="md-header-anchor"></a><span>BackTrade-深度数据</span></h3><blockquote><p><a id="BackTrade_Deep"><span>BackTrade-深度数据</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：{&quot;type&quot;:&quot;depth&quot;,&quot;data&quot;:{&quot;depth&quot;:{&quot;buy&quot;:[{&quot;0&quot;:&quot;8400.23&quot;,&quot;1&quot;:&quot;20&quot;},{&quot;0&quot;:&quot;8400.24&quot;,&quot;1&quot;:&quot;20&quot;}],&quot;sell&quot;:[{&quot;0&quot;:&quot;8400.23&quot;,&quot;1&quot;:&quot;20&quot;},{&quot;0&quot;:&quot;8400.24&quot;,&quot;1&quot;:&quot;20&quot;}]}}}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>type</span></td><td><span>string</span></td><td><span>是</span></td><td><span>depth标志</span></td></tr><tr><td><span>data</span></td><td><span>T</span></td><td><span>是</span></td><td><span>深度内容</span></td></tr></tbody></table></figure><p><span>T -&gt; data:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>depth</span></td><td><span>T</span></td><td><span>是</span></td><td><span>深度内容</span></td></tr></tbody></table></figure><p><span>T -&gt; depth:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>buy</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>买-深度队列</span></td></tr><tr><td><span>sell</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>卖-深度队列</span></td></tr></tbody></table></figure><p><span>T -&gt; buy&amp;sell:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>&quot;0&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>价格</span></td></tr><tr><td><span>&quot;1&quot;</span></td><td><span>string</span></td><td><span>是</span></td><td><span>数量</span></td></tr></tbody></table></figure><p><span>响应报文：无</span></p><h3><a name="backtrade-历史交易数据" class="md-header-anchor"></a><span>BackTrade-历史交易数据</span></h3><blockquote><p><a id="BackTrade_historyDealInfo"><span>BackTrade-历史交易数据</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：{&quot;type&quot;:&quot;tradelog&quot;,&quot;data&quot;:{&quot;tradelog&quot;:[{&quot;tradeID&quot;:1231241,&quot;addtime&quot;:&quot;18:12:45&quot;,&quot;timestamp&quot;:154245124,&quot;type&quot;:1,&quot;price&quot;:&quot;8451.14&quot;,&quot;mum&quot;:&quot;8451.14&quot;,&quot;num&quot;:&quot;1&quot;}]}}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>type</span></td><td><span>string</span></td><td><span>是</span></td><td><span>tradelog标志</span></td></tr><tr><td><span>data</span></td><td><span>T</span></td><td><span>是</span></td><td><span>深度内容</span></td></tr></tbody></table></figure><p><span>T -&gt; tradelog:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>tradelog</span></td><td><span>List</span><T></td><td><span>是</span></td><td><span>日志列表内容</span></td></tr></tbody></table></figure><p><span>T -&gt; tradelog:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>tradeID</span></td><td><span>int</span></td><td><span>是</span></td><td><span>交易id</span></td></tr><tr><td><span>buyOrderID</span></td><td><span>string</span></td><td><span>是</span></td><td><span>购买订单号</span></td></tr><tr><td><span>sellOrderID</span></td><td><span>string</span></td><td><span>是</span></td><td><span>卖出订单号</span></td></tr><tr><td><span>addtime</span></td><td><span>string</span></td><td><span>是</span></td><td><span>交易创建时间</span></td></tr><tr><td><span>timestamp</span></td><td><span>string</span></td><td><span>是</span></td><td><span>交易成交时间</span></td></tr><tr><td><span>type</span></td><td><span>int</span></td><td><span>是</span></td><td><span>1-买入，2-卖出</span></td></tr><tr><td><span>price</span></td><td><span>string</span></td><td><span>是</span></td><td><span>成交价格</span></td></tr><tr><td><span>mum</span></td><td><span>string</span></td><td><span>是</span></td><td><span>成交总额：成交总额=价格*成交量</span></td></tr><tr><td><span>num</span></td><td><span>string</span></td><td><span>是</span></td><td><span>成交量</span></td></tr></tbody></table></figure><p><span>响应报文：无</span></p><h3><a name="backtrade-撮合成功" class="md-header-anchor"></a><span>BackTrade-撮合成功</span></h3><blockquote><p><a id="BackTrade_matchup_success"><span>BackTrade-撮合成功</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：{&quot;addtime&quot;:&quot;07-05 19:34:48&quot;,&quot;id&quot;:321841,&quot;price&quot;:17090,&quot;buyuser&quot;:{&quot;userid&quot;:&quot;asdfasdf&quot;,&quot;num&quot;:100,&quot;deal&quot;:50,&quot;cny&quot;:1000,&quot;cnyd&quot;:100},&quot;selluser&quot;:{&quot;userid&quot;:&quot;asdfasdf&quot;,&quot;num&quot;:1000,&quot;deal&quot;:50,&quot;xnb&quot;:10000,&quot;xnbd&quot;:1000}}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>price</span></td><td><span>string</span></td><td><span>是</span></td><td><span>成交价格</span></td></tr><tr><td><span>number</span></td><td><span>string</span></td><td><span>是</span></td><td><span>成交数量</span></td></tr><tr><td><span>buyuser</span></td><td><span>T</span></td><td><span>是</span></td><td><span>买方信息</span></td></tr><tr><td><span>selluser</span></td><td><span>T</span></td><td><span>是</span></td><td><span>卖方信息</span></td></tr></tbody></table></figure><p><span>T -&gt; buyuser:</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>userid</span></td><td><span>string</span></td><td><span>是</span></td><td><span>用户id</span></td></tr><tr><td><span>orderid</span></td><td><span>int</span></td><td><span>是</span></td><td><span>订单号</span></td></tr><tr><td><span>buyrice</span></td><td><span>string</span></td><td><span>是</span></td><td><span>购买原始价格</span></td></tr></tbody></table></figure><p><span>T -&gt; selluser:</span>
+<span>userid                 | string           |  是  | 用户id</span>
+<span>orderid                | int              |  是  | 订单号</span></p><p><span>响应报文：无</span></p><h2><a name="frontmarket服务端tcp数据报文" class="md-header-anchor"></a><span>FrontMarket服务端TCP数据报文</span></h2><h3><a name="frontmarket-服务器请求k线历史记录" class="md-header-anchor"></a><span>FrontMarket-服务器请求K线历史记录</span></h3><blockquote><p><a id="FrontMarket_Kline"><span>FrontMarket-服务器请求K线历史记录</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>请求方式：TCP长连接转发protocol buffer格式数据包</span></p><p><span>数据报文json格式：{&quot;name&quot;:&quot;下载文件名&quot;,&quot;path&quot;:&quot;下载文件路径&quot;,&quot;modifytime&quot;:&quot;修改时间&quot;,&quot;offset&quot;:1000,&quot;length&quot;:&quot;文件长度上限&quot;}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>name</span></td><td><span>string</span></td><td><span>是</span></td><td><span>下载文件名</span></td></tr><tr><td><span>path</span></td><td><span>string</span></td><td><span>是</span></td><td><span>下载文件路径</span></td></tr><tr><td><span>modifytime</span></td><td><span>string</span></td><td><span>是</span></td><td><span>修改时间</span></td></tr><tr><td><span>offset</span></td><td><span>string</span></td><td><span>是</span></td><td><span>现有内容偏移量</span></td></tr><tr><td><span>length</span></td><td><span>string</span></td><td><span>是</span></td><td><span>文件长度上限</span></td></tr></tbody></table></figure><p><span>响应报文json格式：[{&quot;0&quot;:154221241,&quot;1&quot;:&quot;142&quot;,&quot;2&quot;:&quot;8400.23&quot;,&quot;3&quot;:&quot;8400.23&quot;,&quot;4&quot;:&quot;8400.23&quot;,&quot;5&quot;:&quot;8400.23&quot;}]</span></p><p><span>响应参数说明：该服务请求接口通用，此处说明仅用于描述下载k线这个业务的数据格式内容</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>0</span></td><td><span>datetime</span></td><td><span>是</span></td><td><span>时间戳</span></td></tr><tr><td><span>1</span></td><td><span>int</span></td><td><span>是</span></td><td><span>成交量</span></td></tr><tr><td><span>2</span></td><td><span>decimal</span></td><td><span>是</span></td><td><span>开</span></td></tr><tr><td><span>3</span></td><td><span>decimal</span></td><td><span>是</span></td><td><span>高</span></td></tr><tr><td><span>4</span></td><td><span>decimal</span></td><td><span>是</span></td><td><span>低</span></td></tr><tr><td><span>5</span></td><td><span>decimal</span></td><td><span>是</span></td><td><span>收</span></td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="frontmarket服务端websocket返回客户端数据报文" class="md-header-anchor"></a><span>FrontMarket服务端websocket返回客户端数据报文</span></h2><h3><a name="参考-服务器请求k线历史记录frontmarketkline" class="md-header-anchor"></a><span>参考 </span><a href='#FrontMarket_Kline'><span>服务器请求K线历史记录</span></a></h3><h3><a name="参考-推送-交易市场总信息预览backtradepushmarketinfo" class="md-header-anchor"></a><span>参考 </span><a href='#BackTrade_pushMarketInfo'><span>推送-交易市场总信息预览</span></a></h3><h3><a name="参考-推送-k线数据预览backtradekline" class="md-header-anchor"></a><span>参考 </span><a href='#BackTrade_Kline'><span>推送-K线数据预览</span></a></h3><h3><a name="参考-推送-深度数据预览backtradedeep" class="md-header-anchor"></a><span>参考 </span><a href='#BackTrade_Deep'><span>推送-深度数据预览</span></a></h3><h3><a name="参考-推送-历史交易数据backtradehistorydealinfo" class="md-header-anchor"></a><span>参考 </span><a href='#BackTrade_historyDealInfo'><span>推送-历史交易数据</span></a></h3><h3><a name="frontmarket-通知用户撮合成功" class="md-header-anchor"></a><span>FrontMarket-通知用户撮合成功</span></h3><blockquote><p><a id="BackTrade_matchup_success"><span>FrontMarket-通知用户撮合成功</span></a>
+<span>作者 ：吴友鹏</span></p></blockquote><p><span>接口说明：推送此消息后，客户端收到此消息，则代表服务器撮合信息成功，此时在调取交易接口Mapi/Ajax/getEntrustAndUsercoin获取最新交易记录</span></p><p><span>请求方式：TCP长连接json格式数据包</span></p><p><span>数据报文json格式：{&quot;type&quot;:&quot;trade_success&quot;,&quot;data&quot;:1}</span></p><p><span>参数说明：</span></p><figure><table><thead><tr><th><span>字段</span></th><th><span>数据类型</span></th><th><span>必填</span></th><th><span>备注</span></th></tr></thead><tbody><tr><td><span>type</span></td><td><span>string</span></td><td><span>是</span></td><td><span>通知类型trade_success，交易撮合成功</span></td></tr><tr><td><span>data</span></td><td><span>int</span></td><td><span>是</span></td><td><span>默认初始值为1</span></td></tr></tbody></table></figure><p>&nbsp;</p></div>
+</body>
+</html>

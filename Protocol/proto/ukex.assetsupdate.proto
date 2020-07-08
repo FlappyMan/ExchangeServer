@@ -1,0 +1,25 @@
+syntax = "proto2";
+package ukex;
+message assetsupdate 
+{ 
+	enum CONST
+	{
+		CMD = 117;
+	}
+	required    uint64	uid = 1;            // 用户id
+	optional    string  paypassword = 2;    // 支付密码
+	required    uint32	opertype = 3;       // 业务类型：1-下单；2-撤单；3-批量下单；4-批量撤单 5-撮合成功 ORDER_OPER_TYPE
+	required    uint32	operid = 4;         // 支付密码是否生效 1-需要验证；0-不需要验证
+	message     List
+	{
+		required    uint64	uid = 1;        // 资产变更用户id
+		required    uint32	type_id = 2;    // 业务id
+		required    uint32  type = 3;       // 业务类型 // 1,	// 委托交易买入// 2,	// 委托交易卖出// 3,	// 交易撮合（用户的可用和冻结都会变动）// 4,	// 交易推荐奖励收益// 5,	// 交易手续费收入（平台账户收入）// 6,	// UKEX visa法币充值// 7,	// 银行汇款法币充值// 8,	// 第三方支付法币充值// 9,	// UKEX visa法币提现// 10,	// 银行汇款法币提现// 11,	// 银行汇款法币提现手续费（平台账户收入）// 12,	// 第三方支付法币充值手续费（平台账户收入）// 13,	// OTC资金冻结// 14,	// OTC付款// 15,	// OTC收款// 16,	// 根据地址站内转出// 17,	// 根据地址站内转入// 18,	// 根据地址站内转出手续费（平台账户收入）// 19,	// 平台普通站内转出// 20,	// 平台普通站内转入// 21,	// 平台普通站内转出手续费（平台账户收入）// 22,	// 站外提币// 23,	// 站外提币手续费（平台账户收入）// 24,	// 站外充币// 25,	// 平台赠送// 26,	// UKEX visa开卡收费（用户支出，平台账户收入）// 27,	// UKEX visa充值手续费（平台账户收入）// 28,	// UKEX visa提现手续费（平台账户收入）// 29,	// 项目方归集// 30,	// 平台系统充值// 31,	// 冻结释放		required    uint32  coinid = 4;     // 币种id
+		required	uint32	coinid = 4;		// 币种id
+		required    string  usable = 5;     // 可用资产
+		required    string  fronzen = 6;    // 冻结资产
+		required    string  lockup = 7;     // 锁仓数量
+	}
+	repeated    List    list = 5;
+}
+// protoc --cpp_out=./ *.proto

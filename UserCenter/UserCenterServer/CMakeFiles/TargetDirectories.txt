@@ -1,0 +1,3 @@
+/home/gong/ukexserver/UserCenter/UserCenterServer/CMakeFiles/rebuild_cache.dir
+/home/gong/ukexserver/UserCenter/UserCenterServer/CMakeFiles/UserCenter.dir
+/home/gong/ukexserver/UserCenter/UserCenterServer/CMakeFiles/edit_cache.dir

@@ -1,0 +1,3 @@
+/home/gong/ukexserver/Protocol/CMakeFiles/rebuild_cache.dir
+/home/gong/ukexserver/Protocol/CMakeFiles/UProtocol.dir
+/home/gong/ukexserver/Protocol/CMakeFiles/edit_cache.dir

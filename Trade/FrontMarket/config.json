@@ -1,0 +1,21 @@
+{
+  "BackTrade": {
+    "ip":"127.0.0.1",
+    "port": 9003
+  },
+  "Client": {
+    "ip": "192.168.1.31",
+    "port": 9000
+  },
+  "WriteCache": {
+    "2k": 10,
+    "8k": 10,
+    "16k": 10
+  },
+  "ReadCache": {
+    "2k": 10,
+    "8k": 10,
+    "16k": 10
+  },
+  "KLineDataDir":"/home/"
+}

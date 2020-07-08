@@ -1,0 +1,24 @@
+{
+  "tradeLog_path":"/BackTrade/TradeLog/",
+
+  "DB_ip":"192.168.1.20",
+  "DB_port":3306,
+  "DB_user":"gong",
+  "DB_pwd":"123456",
+  "DB_name":"ukex_data",
+  
+  "new_DB_ip":"192.168.1.20",
+  "new_DB_port":3306,
+  "new_DB_user":"gong",
+  "new_DB_pwd":"123456",
+  "new_DB_name":"ukex_data",
+
+  "totalPerTime":1000,//每次从数据库取数据条数
+  "threadCnt":20,//线程数
+
+  "dbBeginYear":2019,
+  "dbEndYear":2020,
+  "dbEndMonth":6,
+  
+  "UserTableCount":1000
+}

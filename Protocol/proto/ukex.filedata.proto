@@ -1,0 +1,17 @@
+syntax = "proto2";
+package ukex; 
+
+message filedata
+{
+    enum CONST
+    {
+        CMD = 113;
+    }
+    required    string  name = 1;
+    required    string  path = 2;
+    required    uint64  modifytime = 3;
+    required    uint64  offset = 4;
+    required    uint32  length = 5;
+    required    bytes  data = 6;
+    required    string	token = 7; 
+}

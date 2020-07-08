@@ -1,0 +1,24 @@
+#! /bin/bash
+
+OPENLIB_LIB_ZIP="openssl-1.1.1d.tar.gz"
+OPENLIB_LIB_DIR="openssl-1.1.1d"
+OPENLIB_LIB_NAME="openssl"
+
+echo "-----------------------------"
+echo "Build "$OPENLIB_LIB_NAME" ..."
+
+if [ -d $OPENLIB_DEST_DIR$OPENLIB_LIB_DIR  ];then
+  echo $OPENLIB_LIB_NAME" Already exist"
+  exit
+fi
+
+
+cd $OPENLIB_DEST_DIR
+tar zxf $OPENLIB_SRC_DIR/$OPENLIB_LIB_ZIP
+
+cd $OPENLIB_LIB_DIR
+./config
+make
+cd ../
+ln -s $OPENLIB_LIB_DIR $OPENLIB_LIB_NAME 
+

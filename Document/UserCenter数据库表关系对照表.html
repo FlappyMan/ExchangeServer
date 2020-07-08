@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>UserCenter数据库表关系对照表</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+
+
+:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
+html { font-size: 16px; }
+body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
+#write { max-width: 860px; margin: 0px auto; padding: 30px 30px 100px; }
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; word-break: initial; }
+table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(223, 226, 229); margin: 0px; padding: 6px 13px; }
+table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+.CodeMirror-lines { padding-left: 4px; }
+.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
+.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
+code { background-color: rgb(243, 244, 244); padding: 0px 2px; }
+.md-fences { margin-bottom: 15px; margin-top: 15px; padding-top: 8px; padding-bottom: 6px; }
+.md-task-list-item > input { margin-left: -1.3em; }
+@media print {
+  html { font-size: 13px; }
+  table, pre { break-inside: avoid; }
+  pre { overflow-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
+.md-tag { color: rgb(167, 167, 167); opacity: 1; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+.sidebar-tabs { border-bottom: none; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
+.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
+.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
+.md-lang { color: rgb(180, 101, 77); }
+.html-for-mac .context-menu { --item-hover-bg-color: #E6F0FE; }
+#md-notification .btn { border: 0px; }
+.dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+.ty-preferences .window-content { background-color: rgb(250, 250, 250); }
+.ty-preferences .nav-group-item.active { color: white; background: rgb(153, 153, 153); }
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#历史记录">历史记录</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n79"><a class="md-toc-inner" href="#useraccount">user_account</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n129"><a class="md-toc-inner" href="#user-n129">user</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n205"><a class="md-toc-inner" href="#userinfo">user_info</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n585"><a class="md-toc-inner" href="#userauth">user_auth</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n727"><a class="md-toc-inner" href="#userfacts">user_facts</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n972"><a class="md-toc-inner" href="#userassetscoinid">user_assets_[coin_id]</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1066"><a class="md-toc-inner" href="#userlog">user_log</a></span></p></div><h1><a name="历史记录" class="md-header-anchor"></a><span>历史记录</span></h1><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>内容</span></th></tr></thead><tbody><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>文档创建</span></td></tr></tbody></table></figure><figure><table><thead><tr><th><span>日期</span></th><th><span>作者</span></th><th><span>数据库名</span></th><th><span>新表名</span></th><th><span>ukex表</span></th><th><span>ukexpay表</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Account</span></td><td><a href='#useraccount'><span>user_account</span></a></td><td><span>coin_user</span></td><td><span>cnuk_user_main</span></td><td><span>创建</span></td></tr><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Account</span></td><td><a href='#user'><span>user</span></a></td><td><span>coin_user</span></td><td><span>cnuk_user_main</span></td><td><span>创建</span></td></tr><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Account</span></td><td><a href='#userinfo'><span>user_info</span></a></td><td><span>coin_user</span></td><td><span>cnuk_user_main &amp; cnuk_user_info</span></td><td><span>创建</span></td></tr><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Account</span></td><td><a href='#userauth'><span>user_auth</span></a></td><td><span>coin_user</span></td><td><span>cnuk_user_main</span></td><td><span>创建</span></td></tr><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Account</span></td><td><a href='#userfacts'><span>user_facts</span></a></td><td><span>coin_user_info</span></td><td><span>cnuk_user_info</span></td><td><span>创建</span></td></tr><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Assets</span></td><td><a href='#user_assets'><span>user_assets_[coin_id]</span></a></td><td><span>coin_user_coin_balance</span></td><td><span>cnuk_user_balance</span></td><td><span>创建</span></td></tr><tr><td><span>2019-11-11</span></td><td><span>WYP</span></td><td><span>Account</span></td><td><a href='#log'><span>user_log</span></a></td><td><span>-</span></td><td><span>-</span></td><td><span>创建</span></td></tr></tbody></table></figure><h2><a name="useraccount" class="md-header-anchor"></a><span>user_account</span></h2><blockquote><p><a id="user_account"><span>user_account 对应 coin_user &amp; cnuk_user_main</span></a>
+<span>作者 ：WYP</span></p><figure><table><thead><tr><th><span>新表user字段</span></th><th><span>coin_user</span></th><th><span>cnuk_user_main</span></th><th><span>字段说明</span></th></tr></thead><tbody><tr><td><span>account</span></td><td><span>username&amp;email&amp;mobile</span></td><td><span>email</span></td><td><span>新增</span></td></tr><tr><td><span>account_type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>source_type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>ukex_id</span></td><td><span>id</span></td><td><span>-</span></td><td><span>修改&amp;新增</span></td></tr><tr><td><span>ukexpay_uid</span></td><td><span>-</span></td><td><span>uid</span></td><td><span>新增&amp;修改</span></td></tr><tr><td><span>user_id</span></td><td><span>id</span></td><td><span>uid</span></td><td><span>新增</span></td></tr><tr><td><span>create_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>update_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr></tbody></table></figure></blockquote><h2><a name="user-n129" class="md-header-anchor"></a><span>user</span></h2><blockquote><p><a id="user"><span>user 对应 coin_user &amp; cnuk_user_main</span></a>
+<span>作者 ：WYP</span></p><figure><table><thead><tr><th><span>新表user字段</span></th><th><span>coin_user</span></th><th><span>cnuk_user_main</span></th><th><span>coin_user 说明</span></th><th><span>cnuk_user_main 说明</span></th></tr></thead><tbody><tr><td><span>id</span></td><td><span>id</span></td><td><span>uid</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>user_account</span></td><td><span>username</span></td><td><span>email</span></td><td><span>修改</span></td><td><span>修改</span></td></tr><tr><td><span>password</span></td><td><span>password</span></td><td><span>password</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>login_attempts</span></td><td><span>logins</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>source_type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>无</span></td><td><del><span>token</span></del></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>login_time</span></td><td><span>login_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>无</span></td><td><del><span>sort</span></del></td><td><span>-</span></td><td><span>新表无此字段</span></td><td><span>-</span></td></tr><tr><td><span>无</span></td><td><del><span>endtime</span></del></td><td><span>-</span></td><td><span>新表无此字段</span></td><td><span>-</span></td></tr><tr><td><span>create_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>update_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr></tbody></table></figure></blockquote><h2><a name="userinfo" class="md-header-anchor"></a><span>user_info</span></h2><blockquote><p><a id="user_info"><span>user_info 对应 coin_user &amp; cnuk_user_main &amp; cnuk_user_info</span></a>
+<span>作者 ：WYP</span></p><figure><table><thead><tr><th><span>新表user字段</span></th><th><span>coin_user</span></th><th><span>cnuk_user_main</span></th><th><span>cnuk_user_info</span></th><th><span>coin_user说明</span></th><th><span>cnuk_user_main说明</span></th><th><span>cnuk_user_info说明</span></th></tr></thead><tbody><tr><td><span>user_id</span></td><td><span>id</span></td><td><span>uid</span></td><td><span>uid</span></td><td><span>修改</span></td><td><span>修改</span></td><td><span>修改</span></td></tr><tr><td><span>mobile</span></td><td><span>moble</span></td><td><span>phone</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>修改</span></td><td><span>无</span></td></tr><tr><td><span>id_type</span></td><td><span>id_type</span></td><td><span>-</span></td><td><span>certificate_type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>identity_number</span></td><td><span>-</span></td><td><span>-</span></td><td><span>identity_number</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>identity_expiry_date</span></td><td><span>-</span></td><td><span>-</span></td><td><span>identity_expiry_date</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>identity_info</span></td><td><span>-</span></td><td><span>-</span></td><td><span>identity_info</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>paypassword</span></td><td><span>paypassword</span></td><td><span>pin</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><span>-</span></td><td><del><span>password_second</span></del></td><td><span>-</span></td><td><span>-</span></td><td><span>移除</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><del><span>regist_time</span></del></td><td><span>-</span></td><td><span>-</span></td><td><span>移除</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>recommender_level1</span></td><td><span>invit_1</span></td><td><span>-</span></td><td><span>invit_1</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>recommender_level2</span></td><td><span>invit_2</span></td><td><span>-</span></td><td><span>invit_2</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>recommender_level3</span></td><td><span>invit_3</span></td><td><span>-</span></td><td><span>invit_3</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>realname</span></td><td><span>truename</span></td><td><span>-</span></td><td><span>cn_name</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>country</span></td><td><span>country</span></td><td><span>country</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>c2c_info_ext</span></td><td><span>-</span></td><td><span>-</span></td><td><span>c2c_info_ext</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>ext</span></td><td><span>-</span></td><td><span>-</span></td><td><span>ext</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>invit_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>invit_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>source_of_funds</span></td><td><span>-</span></td><td><span>-</span></td><td><span>source_of_funds</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>mobile_binding_time</span></td><td><span>mobletime</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>id_number</span></td><td><span>idcard</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>ip_address</span></td><td><span>addip</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>address_desc</span></td><td><span>addr</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>email</span></td><td><span>email</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>wechat</span></td><td><span>wechat</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>wechat_img</span></td><td><span>wechat_img</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>wechat_openid</span></td><td><span>openid</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>alipay</span></td><td><span>alipay</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>alipay_img</span></td><td><span>alipay_img</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>invite_code</span></td><td><span>invit</span></td><td><span>-</span></td><td><span>invit_code</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>custom_cate_id</span></td><td><span>custom_cate_id</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>master_account</span></td><td><span>parent_id</span></td><td><span>-</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>source_proj_uid</span></td><td><span>source_proj_uid</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>uuid</span></td><td><span>uuid</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>uuid_salt</span></td><td><span>uuid_salt</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>user_image</span></td><td><span>-</span></td><td><span>img_url</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>country_code</span></td><td><span>-</span></td><td><span>country_code</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>user_type</span></td><td><span>-</span></td><td><span>type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>account_active_time</span></td><td><span>-</span></td><td><span>active_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>secret_key</span></td><td><span>ga</span></td><td><span>secret_key</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>refer_currency</span></td><td><span>-</span></td><td><span>refer_currency</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>kyc_refuse_num</span></td><td><span>-</span></td><td><span>kyc_refuse_num</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>lucky_count</span></td><td><span>-</span></td><td><span>lucky_count</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>c2c_refuse_num</span></td><td><span>-</span></td><td><span>c2c_refuse_num</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>rescue_code</span></td><td><span>-</span></td><td><span>rescue_code</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>create_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>update_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td><td><span>-</span></td></tr></tbody></table></figure></blockquote><h2><a name="userauth" class="md-header-anchor"></a><span>user_auth</span></h2><blockquote><p><a id="user_auth"><span>user_auth 对应 coin_user &amp; cnuk_user_main</span></a>
+<span>作者 ：WYP</span></p><figure><table><thead><tr><th><span>新表user字段</span></th><th><span>coin_user</span></th><th><span>cnuk_user_main</span></th><th><span>coin_user说明</span></th><th><span>cnuk_user_main说明</span></th></tr></thead><tbody><tr><td><span>user_id</span></td><td><span>id</span></td><td><span>uid</span></td><td><span>修改</span></td><td><span>修改</span></td></tr><tr><td><span>is_allow_login</span></td><td><span>is_allow_login</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>paypassword_status</span></td><td><span>tpwdsetting</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>user_status</span></td><td><span>status</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>auth_status</span></td><td><span>isauth</span></td><td><span>c2c_status</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>kyc_auth</span></td><td><span>kycauth</span></td><td><span>auth_status</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>email_auth</span></td><td><span>is_email</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>allow_openapi_withdrawal</span></td><td><span>allow_api_withdrawal</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>is_reauth</span></td><td><span>is_reauth</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>is_pass_aml</span></td><td><span>is_pass_aml</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>register_type</span></td><td><span>register_by</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>verify_type</span></td><td><span>verify_type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>global_kyc_status</span></td><td><span>global_kyc_status</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>last_operate_time</span></td><td><span>last_operate_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>account_status</span></td><td><span>-</span></td><td><span>status</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>-</span></td><td><span>-</span></td><td><del><span>has_balance</span></del></td><td><span>-</span></td><td><span>移除</span></td></tr><tr><td><span>os_verify</span></td><td><span>-</span></td><td><span>os_verify</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>pin_verify</span></td><td><span>-</span></td><td><span>pin_verify</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>two_factor</span></td><td><span>-</span></td><td><span>two_factor</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>hide_balance</span></td><td><span>-</span></td><td><span>hide_balance</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>create_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>update_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr></tbody></table></figure></blockquote><h2><a name="userfacts" class="md-header-anchor"></a><span>user_facts</span></h2><blockquote><p><a id="user_facts"><span>user_facts 对应 coin_user_info &amp; cnuk_user_info</span></a>
+<span>作者 ：WYP</span></p><figure><table><thead><tr><th><span>新表user字段</span></th><th><span>coin_user_info</span></th><th><span>cnuk_user_info</span></th><th><span>coin_user_info说明</span></th><th><span>cnuk_user_info说明</span></th></tr></thead><tbody><tr><td><span>user_id</span></td><td><span>user_id</span></td><td><span>uid</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>first_name</span></td><td><span>first_name</span></td><td><span>first_name</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>last_name</span></td><td><span>last_name</span></td><td><span>last_name</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>birthday</span></td><td><span>birthday</span></td><td><span>birth</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>country</span></td><td><span>country</span></td><td><span>cnuk_user_main.country</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>residence_country</span></td><td><span>-</span></td><td><span>residence_country</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>province</span></td><td><span>province</span></td><td><span>state</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>city</span></td><td><span>city</span></td><td><span>city</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>town</span></td><td><span>town</span></td><td><span>town</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>district</span></td><td><span>district</span></td><td><span>district</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>street_address</span></td><td><span>street_address</span></td><td><span>street</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>building_number</span></td><td><span>building_number</span></td><td><span>building</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>building_name</span></td><td><span>building_name</span></td><td><span>building_name</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>sex</span></td><td><span>sex</span></td><td><span>sex</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>zip_code</span></td><td><span>zip_code</span></td><td><span>postcode</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>apartment</span></td><td><span>-</span></td><td><span>apartment</span></td><td><span>-</span></td><td><span>新增</span></td></tr><tr><td><span>first_residence_certificate</span></td><td><span>living_proof_1</span></td><td><span>living_proof_1</span></td><td><span>修改</span></td><td><span>修改</span></td></tr><tr><td><span>second_residence_certificate</span></td><td><span>living_proof_2</span></td><td><span>living_proof_2</span></td><td><span>修改</span></td><td><span>修改</span></td></tr><tr><td><span>street_code</span></td><td><span>street_code</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>unit</span></td><td><span>unit</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>house_code</span></td><td><span>house_code</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>passport</span></td><td><span>passport</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>passport_ocr</span></td><td><span>passport_ocr</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>passport_expire</span></td><td><span>passport_expire</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>passport_picture</span></td><td><span>passport_1</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>passport_picture_hold</span></td><td><span>passport_2</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>driving_number</span></td><td><span>driving</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>driving_picture</span></td><td><span>driving_1</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>driving_picture_hold</span></td><td><span>driving_2</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>is_europe</span></td><td><span>is_eu</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>has_deducted_gbp</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>has_deducted_eur</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>has_deducted_usd</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><del><span>visa_email</span></del></td><td><span>-</span></td><td><span>移除</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><del><span>visa_mobile_code</span></del></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><del><span>visa_mobile</span></del></td><td><span>-</span></td><td><span>移除</span></td><td><span>-</span></td></tr><tr><td><span>nationality</span></td><td><span>nationality</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>create_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr><tr><td><span>update_time</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr></tbody></table></figure></blockquote><h2><a name="userassetscoinid" class="md-header-anchor"></a><span>user_assets_[coin_id]</span></h2><blockquote><p><a id="user_assets"><span>user_assets_[coin_id] 对应 coin_user_coin_balance &amp; cnuk_user_balance</span></a>
+<span>作者 ：WYP</span></p><figure><table><thead><tr><th><span>新表字段</span></th><th><span>coin_user_coin_balance</span></th><th><span>cnuk_user_balance</span></th><th><span>coin_user_coin_balance说明</span></th><th><span>cnuk_user_balance说明</span></th></tr></thead><tbody><tr><td><span>id</span></td><td><span>id</span></td><td><span>id</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>user_id</span></td><td><span>user_id</span></td><td><span>uid</span></td><td><span>-</span></td><td><span>修改</span></td></tr><tr><td><span>source_type</span></td><td><span>-</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>新增</span></td></tr><tr><td><span>-</span></td><td><del><span>coin_id</span></del></td><td><del><span>coin_id</span></del></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><del><span>coin</span></del></td><td><span>-</span></td><td><span>新表无此字段</span></td><td><span>-</span></td></tr><tr><td><span>-</span></td><td><del><span>coin_name</span></del></td><td><del><span>coin_name</span></del></td><td><span>新增无此字段</span></td><td><span>新增无此字段</span></td></tr><tr><td><span>-</span></td><td><del><span>addr_id</span></del></td><td><del><span>addr_id</span></del></td><td><span>新增无此字段</span></td><td><span>新增无此字段</span></td></tr><tr><td><span>-</span></td><td><del><span>addr</span></del></td><td><del><span>addr</span></del></td><td><span>新增无此字段</span></td><td><span>新增无此字段</span></td></tr><tr><td><span>usable</span></td><td><span>usable</span></td><td><span>usable</span></td><td><span>修改</span></td><td><span>修改</span></td></tr><tr><td><span>freeze</span></td><td><span>freeze</span></td><td><span>freeze</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>lock_up</span></td><td><span>lockup</span></td><td><span>-</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>status</span></td><td><span>status</span></td><td><span>status</span></td><td><span>-</span></td><td><span>-</span></td></tr><tr><td><span>create_time</span></td><td><span>add_time</span></td><td><span>-</span></td><td><span>修改</span></td><td><span>-</span></td></tr><tr><td><span>update_time</span></td><td><span>无</span></td><td><span>-</span></td><td><span>新增</span></td><td><span>-</span></td></tr></tbody></table></figure></blockquote><h2><a name="userlog" class="md-header-anchor"></a><span>user_log</span></h2><blockquote><p><a id="log"><span>user_log</span></a>
+<span>作者 ：WYP</span>
+<span>说明 ：用于记录用户日志以及管理员操作日志</span></p><figure><table><thead><tr><th><span>新表字段</span></th><th><span>字段说明</span></th></tr></thead><tbody><tr><td><span>id</span></td><td><span>自增int</span></td></tr><tr><td><span>user_id</span></td><td><span>userid</span></td></tr><tr><td><span>oper_type</span></td><td><span>操作类型</span></td></tr><tr><td><span>log</span></td><td><span>操作数据内容</span></td></tr><tr><td><span>create_time</span></td><td><span>创建时间</span></td></tr></tbody></table></figure></blockquote><p>&nbsp;</p></div>
+</body>
+</html>
