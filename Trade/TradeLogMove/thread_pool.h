@@ -35,7 +35,7 @@ namespace tp {
 
 			void Pop(T* &v) noexcept {
 				std::unique_lock<std::mutex> lock(mutex_);
-				cv_.wait(lock, [this] { return !queue_.empty(); });
+				cv_.wait(lock, [this] { return !queue_.empty(); });//cv上锁前加锁mutex,cv上锁后解锁mutex,线程阻塞
 				v = queue_.front();
 				queue_.pop();
 			}
@@ -91,12 +91,12 @@ namespace tp {
 			std::string executor_name_;
 			uint32_t threads_count_;
 			std::atomic_bool done_;
-			std::vector<std::shared_ptr<TaskQueue<T>>> work_queues_;
+			std::vector<std::shared_ptr<TaskQueue<T>>> work_queues_;//工作队列vector<queue>
 			std::vector<std::shared_ptr<ThreadStatistics>> work_statistics_;
-			std::vector<std::thread> work_threads_;
+			std::vector<std::thread> work_threads_;//线程队列vector<thread>
 			ThreadsJoiner threads_joiner_;
 
-			struct TaskWrapper {
+			struct TaskWrapper { //阻塞队列中获取task队列
 				T* msg = nullptr;
 				explicit TaskWrapper(std::shared_ptr<TaskQueue<T>> queue) { queue->Pop(msg); }
 				~TaskWrapper(void) { delete msg; }
@@ -105,7 +105,7 @@ namespace tp {
 		public:
 			TaskExecutionMgr()
 				: executor_name_("default"), threads_count_(1), done_(false),
-				threads_joiner_(work_threads_) {}
+				threads_joiner_(work_threads_) {}//初始化列表
 			~TaskExecutionMgr() 
 			{ 
 				done_ = true;
@@ -117,7 +117,7 @@ namespace tp {
 				for (auto& i : work_queues_)
 				{
 					msg = new T;
-					i->Push(msg);
+					i->Push(msg);//工作队列全部置空
 				}
 			}
 
@@ -131,7 +131,7 @@ namespace tp {
 
 			bool Initialize(uint32_t threads_count,
 					std::string &&executor_name) noexcept {
-				threads_count_ = (0 == threads_count) ? std::thread::hardware_concurrency()
+				threads_count_ = (0 == threads_count) ? std::thread::hardware_concurrency()//自定义或者运行时决定线程的数量
 					: threads_count;
 				assert(threads_count_ > 0);
 				executor_name_ = std::move(executor_name);
@@ -157,7 +157,7 @@ namespace tp {
 			size_t DispatchToIdlestThread(T* msg) noexcept {
 				const size_t tid = this->GetIdlestThreadId();
 				assert(tid < work_threads_.size());
-				work_queues_[tid]->Push(msg);;
+				work_queues_[tid]->Push(msg);
 				return tid;
 			}
 
@@ -187,7 +187,7 @@ namespace tp {
 					while (!done_) {
 						TaskWrapper task_wrapper(queue);
 						T* request = task_wrapper.msg;
-						if(request->Size()==0)break;						
+						if(request->Size()==0)break;//工作队列为空,退出线程的条件						
 						Task<T>::DoTask(request);
 					}
 				}
